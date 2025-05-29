@@ -81,3 +81,13 @@ Once you’ve added some documents in each collection:
 * If you leave your Firestore rules in test mode, no further auth configuration is needed for reads/writes.
 
 That’s it—just three clicks per collection and a few fields per document, and your mock UI will light up with live Firestore data!
+
+
+I said to you that i need the UI exactly as in image. Only the top category list like Earn 100% etc, banners and products are from firebase, rest all like alert button filter etc are static icons and text. Rewrite the entire home_screen.dart code and make the UI exactly like in image.
+
+For navbar yes make the navbar also just like in image. From search to navbar all must be same as image. 
+
+Give me completely rewritten home_screen.dart code with the exact UI as in the image you provided: [
+
+
+]

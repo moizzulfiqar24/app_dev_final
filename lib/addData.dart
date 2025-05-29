@@ -37,14 +37,14 @@ class FirestoreSeederScreen extends StatelessWidget {
 
     // Products
     await firestore.collection('products').add({
-      'name': 'Wireless Headphones',
-      'imageUrl': 'https://via.placeholder.com/150x150.png?text=Headphones',
+      'name': 'TV',
+      'imageUrl': 'https://github.com/moizzulfiqar24/app_dev_final/blob/main/assets/images/tv.jpg?raw=true',
       'price': 59.99,
       'isPopular': true,
     });
     await firestore.collection('products').add({
       'name': 'Running Shoes',
-      'imageUrl': 'https://via.placeholder.com/150x150.png?text=Shoes',
+      'imageUrl': 'https://github.com/moizzulfiqar24/app_dev_final/blob/main/assets/images/shoe.jpg?raw=true',
       'price': 89.99,
       'isPopular': true,
     });
