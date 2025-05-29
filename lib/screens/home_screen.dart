@@ -199,11 +199,25 @@ class HomeScreen extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               20),
                                                     ),
-                                                    child: const Text(
-                                                        "I want ->",
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white)),
+                                                    child: Row(
+                                                      children: [
+                                                        const Text(
+                                                          "I want",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 18),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 4,
+                                                        ),
+                                                        Icon(
+                                                          Icons.arrow_forward,
+                                                          color: Colors.white,
+                                                          size: 16,
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
                                                   const SizedBox(width: 8),
                                                   const Text(
