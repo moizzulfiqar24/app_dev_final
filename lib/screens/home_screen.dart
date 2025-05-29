@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // For SystemChrome
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/home_bloc.dart';
 import '../blocs/home_event.dart';
@@ -9,11 +10,20 @@ import 'package:carousel_slider/carousel_slider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Set status bar to transparent and adjust icon brightness
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      ),
+    );
+
     return BlocProvider(
       create: (_) =>
           HomeBloc(repository: HomeRepository())..add(LoadHomeData()),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         body: SafeArea(
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
@@ -23,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 return Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFFFED1E8), Colors.white],
+                      colors: [Color(0xFFFAD1E8), Color(0xFFF5E6F5)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -102,6 +112,26 @@ class HomeScreen extends StatelessWidget {
                           itemCount: state.categories.length,
                           itemBuilder: (context, index) {
                             final category = state.categories[index];
+                            IconData categoryIcon;
+                            switch (category.name.toLowerCase()) {
+                              case 'tax note':
+                                categoryIcon = Icons.receipt;
+                                break;
+                              case 'premium':
+                                categoryIcon = Icons.star;
+                                break;
+                              case 'earn 100%':
+                                categoryIcon = Icons.percent;
+                                break;
+                              case 'challenge':
+                                categoryIcon = Icons.sports_esports;
+                                break;
+                              case 'more':
+                                categoryIcon = Icons.more_horiz;
+                                break;
+                              default:
+                                categoryIcon = Icons.category;
+                            }
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
@@ -110,9 +140,10 @@ class HomeScreen extends StatelessWidget {
                                   CircleAvatar(
                                     radius: 22,
                                     backgroundColor: Colors.white,
-                                    backgroundImage:
-                                        NetworkImage(category.imageUrl),
-                                    onBackgroundImageError: (_, __) {},
+                                    child: Icon(
+                                      categoryIcon,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                   const SizedBox(height: 6),
                                   Text(category.name,
@@ -188,18 +219,19 @@ class HomeScreen extends StatelessWidget {
                                               const Text("Shop with",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 16)),
+                                                      fontSize: 14)),
                                               const Text("100% cashback",
                                                   style: TextStyle(
-                                                      fontSize: 20,
+                                                      fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color:
                                                           Colors.pinkAccent)),
                                               const Text("On Shopee",
                                                   style: TextStyle(
-                                                      color: Colors.white)),
-                                              const SizedBox(height: 8),
+                                                      color: Colors.white,
+                                                      fontSize: 12)),
+                                              const SizedBox(height: 4),
                                               Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
@@ -212,19 +244,41 @@ class HomeScreen extends StatelessWidget {
                                                 ),
                                                 child: const Text("I want!",
                                                     style: TextStyle(
-                                                        color: Colors.white)),
+                                                        color: Colors.white,
+                                                        fontSize: 12)),
                                               ),
-                                              const SizedBox(height: 4),
+                                              const SizedBox(height: 2),
                                               const Text("Best offer!",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 12)),
+                                                      fontSize: 10)),
                                             ],
+                                          ),
+                                        ),
+                                        // Add FLASH SALE overlay
+                                        Positioned(
+                                          top: 16,
+                                          right: 16,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 10, vertical: 5),
+                                            decoration: BoxDecoration(
+                                              color: Colors.yellow,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: const Text(
+                                              "FLASH SALE",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12),
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
+                                  );
                                 );
                               }).toList(),
                             ),
@@ -252,7 +306,8 @@ class HomeScreen extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: state.products.length,
                                 itemBuilder: (context, index) {
-                                  final product = state.products[index];
+                                  final products = ["TV", "Running Shoes"];
+                                  final cashbacks = ["2%", "4%"];
                                   return Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.45,
@@ -281,7 +336,7 @@ class HomeScreen extends StatelessWidget {
                                                 topRight: Radius.circular(16),
                                               ),
                                               child: Image.network(
-                                                product.imageUrl,
+                                                state.products[index].imageUrl,
                                                 width: double.infinity,
                                                 height: 140,
                                                 fit: BoxFit.cover,
@@ -305,13 +360,13 @@ class HomeScreen extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                  "${(index + 1) * 2}% cashback",
+                                                  "$cashbacks[index] cashback",
                                                   style: TextStyle(
                                                       color: Colors.pink,
                                                       fontWeight:
                                                           FontWeight.bold)),
                                               const SizedBox(height: 4),
-                                              Text(product.name,
+                                              Text(products[index],
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
@@ -344,6 +399,24 @@ class HomeScreen extends StatelessWidget {
           unselectedItemColor: Colors.grey,
           currentIndex: 0,
           type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            if (index == 0) return; // Already on Home
+
+            switch (index) {
+              case 1:
+                Navigator.pushReplacementNamed(context, '/cards');
+                break;
+              case 2:
+                Navigator.pushReplacementNamed(context, '/pix');
+                break;
+              case 3:
+                Navigator.pushReplacementNamed(context, '/notes');
+                break;
+              case 4:
+                Navigator.pushReplacementNamed(context, '/extract');
+                break;
+            }
+          },
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(

@@ -1,4 +1,5 @@
 import 'package:app_dev_final/addData.dart';
+import 'package:app_dev_final/screens/cards_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shopping App',
       debugShowCheckedModeBanner: false,
+      routes: {
+        '/home': (_) => HomeScreen(),
+        '/cards': (_) => CardsScreen(),
+      },
       theme: ThemeData(
         primarySwatch: Colors.pink,
         useMaterial3: true,
