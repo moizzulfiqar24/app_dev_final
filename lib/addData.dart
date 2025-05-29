@@ -7,19 +7,31 @@ class FirestoreSeederScreen extends StatelessWidget {
   void seedData() async {
     // Banners
     await firestore.collection('banners').add({
-      'imageUrl': 'https://via.placeholder.com/600x200.png?text=Banner+1',
+      'imageUrl': 'https://github.com/moizzulfiqar24/app_dev_final/blob/main/assets/images/banner2.png?raw=true',
     });
     await firestore.collection('banners').add({
-      'imageUrl': 'https://via.placeholder.com/600x200.png?text=Banner+2',
+      'imageUrl': 'https://github.com/moizzulfiqar24/app_dev_final/blob/main/assets/images/banner1.png?raw=true',
     });
 
     // Categories
     await firestore.collection('categories').add({
-      'name': 'Electronics',
+      'name': 'Earn 100%',
       'imageUrl': 'https://via.placeholder.com/100x100.png?text=Electronics',
     });
     await firestore.collection('categories').add({
-      'name': 'Shoes',
+      'name': 'Tax Note',
+      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+    });
+    await firestore.collection('categories').add({
+      'name': 'Premium',
+      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+    });
+    await firestore.collection('categories').add({
+      'name': 'Challenge',
+      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+    });
+    await firestore.collection('categories').add({
+      'name': 'More',
       'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
     });
 
