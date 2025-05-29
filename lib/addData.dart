@@ -16,19 +16,19 @@ class FirestoreSeederScreen extends StatelessWidget {
     // Categories
     await firestore.collection('categories').add({
       'name': 'Earn 100%',
-      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Electronics',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/ticket.svg',
     });
     await firestore.collection('categories').add({
       'name': 'Tax Note',
-      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/note.svg',
     });
     await firestore.collection('categories').add({
       'name': 'Premium',
-      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/sketch-logo.svg',
     });
     await firestore.collection('categories').add({
       'name': 'Challenge',
-      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/game-controller.svg',
     });
     await firestore.collection('categories').add({
       'name': 'More',
