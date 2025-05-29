@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // For SystemChrome
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/home_bloc.dart';
 import '../blocs/home_event.dart';
@@ -10,7 +10,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Set status bar to transparent and adjust icon brightness
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -219,10 +218,10 @@ class HomeScreen extends StatelessWidget {
                                               const Text("Shop with",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 14)),
+                                                      fontSize: 12)), // Reduced
                                               const Text("100% cashback",
                                                   style: TextStyle(
-                                                      fontSize: 18,
+                                                      fontSize: 16, // Reduced
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color:
@@ -230,8 +229,9 @@ class HomeScreen extends StatelessWidget {
                                               const Text("On Shopee",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 12)),
-                                              const SizedBox(height: 4),
+                                                      fontSize: 10)), // Reduced
+                                              const SizedBox(
+                                                  height: 2), // Reduced
                                               Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
@@ -245,17 +245,18 @@ class HomeScreen extends StatelessWidget {
                                                 child: const Text("I want!",
                                                     style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 12)),
+                                                        fontSize:
+                                                            10)), // Reduced
                                               ),
-                                              const SizedBox(height: 2),
+                                              const SizedBox(
+                                                  height: 1), // Reduced
                                               const Text("Best offer!",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 10)),
+                                                      fontSize: 8)), // Reduced
                                             ],
                                           ),
                                         ),
-                                        // Add FLASH SALE overlay
                                         Positioned(
                                           top: 16,
                                           right: 16,
@@ -278,8 +279,8 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                  );
-                                );
+                                  ),
+                                ); // Added closing parenthesis
                               }).toList(),
                             ),
 
@@ -359,8 +360,7 @@ class HomeScreen extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                  "$cashbacks[index] cashback",
+                                              Text("$cashbacks[index] cashback",
                                                   style: TextStyle(
                                                       color: Colors.pink,
                                                       fontWeight:
@@ -400,7 +400,7 @@ class HomeScreen extends StatelessWidget {
           currentIndex: 0,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
-            if (index == 0) return; // Already on Home
+            if (index == 0) return;
 
             switch (index) {
               case 1:
@@ -432,7 +432,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Top right icon with border
 class _TopIcon extends StatelessWidget {
   final IconData icon;
 
