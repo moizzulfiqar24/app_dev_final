@@ -8,7 +8,7 @@ class CardsBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      selectedItemColor: Colors.pink,
+      selectedItemColor: Colors.black,
       unselectedItemColor: Colors.grey,
       currentIndex: 1,
       type: BottomNavigationBarType.fixed,

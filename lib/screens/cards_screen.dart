@@ -31,22 +31,34 @@ class CardsScreen extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CardsHeader(),
-                const SizedBox(height: 24),
-                CardCarousel(cardImages: cardImages),
-                const SizedBox(height: 32),
-                const ActivityHeader(),
-                const SizedBox(height: 16),
-                ...transactions
-                    .map((txn) => TransactionTile(txn: txn))
-                    .toList(),
-              ],
-            ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const CardsHeader(),
+                        const SizedBox(height: 24),
+                        CardCarousel(cardImages: cardImages),
+                        const SizedBox(height: 32),
+                        const ActivityHeader(),
+                        const SizedBox(height: 16),
+                        ...transactions
+                            .map((txn) => TransactionTile(txn: txn))
+                            .toList(),
+                        const Spacer(), 
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),

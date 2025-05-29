@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/home_bloc.dart';
 import '../blocs/home_event.dart';
@@ -10,19 +9,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.light,
-      ),
-    );
-
     return BlocProvider(
       create: (_) =>
           HomeBloc(repository: HomeRepository())..add(LoadHomeData()),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
@@ -32,7 +23,7 @@ class HomeScreen extends StatelessWidget {
                 return Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFFFAD1E8), Color(0xFFF5E6F5)],
+                      colors: [Color(0xFFFED1E8), Colors.white],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -111,26 +102,6 @@ class HomeScreen extends StatelessWidget {
                           itemCount: state.categories.length,
                           itemBuilder: (context, index) {
                             final category = state.categories[index];
-                            IconData categoryIcon;
-                            switch (category.name.toLowerCase()) {
-                              case 'tax note':
-                                categoryIcon = Icons.receipt;
-                                break;
-                              case 'premium':
-                                categoryIcon = Icons.star;
-                                break;
-                              case 'earn 100%':
-                                categoryIcon = Icons.percent;
-                                break;
-                              case 'challenge':
-                                categoryIcon = Icons.sports_esports;
-                                break;
-                              case 'more':
-                                categoryIcon = Icons.more_horiz;
-                                break;
-                              default:
-                                categoryIcon = Icons.category;
-                            }
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
@@ -139,10 +110,9 @@ class HomeScreen extends StatelessWidget {
                                   CircleAvatar(
                                     radius: 22,
                                     backgroundColor: Colors.white,
-                                    child: Icon(
-                                      categoryIcon,
-                                      color: Colors.black,
-                                    ),
+                                    backgroundImage:
+                                        NetworkImage(category.imageUrl),
+                                    onBackgroundImageError: (_, __) {},
                                   ),
                                   const SizedBox(height: 6),
                                   Text(category.name,
@@ -154,6 +124,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
+                      // Main content
                       Expanded(
                         child: ListView(
                           padding: EdgeInsets.zero,
@@ -166,7 +137,7 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 18)),
                             ),
 
-                            // Banner Carousel
+                            // Banner Carousel (fixed overflow)
                             CarouselSlider(
                               options: CarouselOptions(
                                 height: 160,
@@ -176,27 +147,22 @@ class HomeScreen extends StatelessWidget {
                               ),
                               items: state.banners.map((banner) {
                                 return Builder(
-                                  builder: (context) => Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
+                                  builder: (context) => ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
                                     child: Stack(
+                                      fit: StackFit.expand,
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          child: Image.network(
-                                            banner.imageUrl,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                            errorBuilder: (_, __, ___) =>
-                                                Icon(Icons.image_not_supported),
-                                          ),
+                                        // Banner image
+                                        Image.network(
+                                          banner.imageUrl,
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                          errorBuilder: (_, __, ___) =>
+                                              Icon(Icons.image_not_supported),
                                         ),
+                                        // Gradient overlay
                                         Container(
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
                                             gradient: LinearGradient(
                                               colors: [
                                                 Colors.black.withOpacity(0.3),
@@ -207,80 +173,74 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(16.0),
+                                        // Caption moved into Positioned to avoid overflow
+                                        Positioned(
+                                          left: 16,
+                                          right: 16,
+                                          bottom: 16,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
                                             children: [
                                               const Text("Shop with",
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 12)), // Reduced
+                                                      fontSize: 16)),
                                               const Text("100% cashback",
                                                   style: TextStyle(
-                                                      fontSize: 16, // Reduced
+                                                      fontSize: 20,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color:
                                                           Colors.pinkAccent)),
                                               const Text("On Shopee",
                                                   style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 10)), // Reduced
-                                              const SizedBox(
-                                                  height: 2), // Reduced
-                                              Container(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
+                                                      color: Colors.white)),
+                                              const SizedBox(height: 8),
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
                                                         horizontal: 16,
                                                         vertical: 6),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.pink,
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                ),
-                                                child: const Text("I want!",
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.pink,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                    ),
+                                                    child: const Text("I want!",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white)),
+                                                  ),
+                                                  const SizedBox(width: 8),
+                                                  const Text(
+                                                    "Best offer!",
                                                     style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize:
-                                                            10)), // Reduced
+                                                        color: Colors.black,
+                                                        // fontWeight:
+                                                        //     FontWeight.bold,
+                                                        fontSize: 12),
+                                                  ),
+                                                ],
                                               ),
-                                              const SizedBox(
-                                                  height: 1), // Reduced
-                                              const Text("Best offer!",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 8)), // Reduced
+                                              // const SizedBox(height: 4),
+                                              // const Text(
+                                              //   "Best offer!",
+                                              //   style: TextStyle(
+                                              //       color: Colors.white,
+                                              //       fontSize: 12),
+                                              // ),
                                             ],
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 16,
-                                          right: 16,
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 5),
-                                            decoration: BoxDecoration(
-                                              color: Colors.yellow,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: const Text(
-                                              "FLASH SALE",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 12),
-                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ); // Added closing parenthesis
+                                );
                               }).toList(),
                             ),
 
@@ -307,8 +267,7 @@ class HomeScreen extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 itemCount: state.products.length,
                                 itemBuilder: (context, index) {
-                                  final products = ["TV", "Running Shoes"];
-                                  final cashbacks = ["2%", "4%"];
+                                  final product = state.products[index];
                                   return Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.45,
@@ -337,7 +296,7 @@ class HomeScreen extends StatelessWidget {
                                                 topRight: Radius.circular(16),
                                               ),
                                               child: Image.network(
-                                                state.products[index].imageUrl,
+                                                product.imageUrl,
                                                 width: double.infinity,
                                                 height: 140,
                                                 fit: BoxFit.cover,
@@ -360,13 +319,14 @@ class HomeScreen extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text("$cashbacks[index] cashback",
+                                              Text(
+                                                  "${(index + 1) * 2}% cashback",
                                                   style: TextStyle(
                                                       color: Colors.pink,
                                                       fontWeight:
                                                           FontWeight.bold)),
                                               const SizedBox(height: 4),
-                                              Text(products[index],
+                                              Text(product.name,
                                                   maxLines: 1,
                                                   overflow:
                                                       TextOverflow.ellipsis),
@@ -395,13 +355,12 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.pink,
+          selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey,
           currentIndex: 0,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             if (index == 0) return;
-
             switch (index) {
               case 1:
                 Navigator.pushReplacementNamed(context, '/cards');
@@ -432,6 +391,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// Top right icon with border
 class _TopIcon extends StatelessWidget {
   final IconData icon;
 
