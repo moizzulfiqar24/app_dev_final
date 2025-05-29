@@ -32,7 +32,7 @@ class FirestoreSeederScreen extends StatelessWidget {
     });
     await firestore.collection('categories').add({
       'name': 'More',
-      'imageUrl': 'https://via.placeholder.com/100x100.png?text=Shoes',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/834fa60f9805615f2d036fa0ee9a89f46a548dc3/assets/images/dots-three-outline.svg',
     });
 
     // Products
