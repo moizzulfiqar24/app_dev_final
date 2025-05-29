@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         useMaterial3: true,
       ),
-      home: FirestoreSeederScreen(),
+      home: HomeScreen(),
     );
   }
 }
