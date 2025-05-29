@@ -58,7 +58,6 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
@@ -90,7 +89,6 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-
                       Container(
                         height: 85,
                         child: ListView.builder(
@@ -120,7 +118,6 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                       ),
-
                       Expanded(
                         child: ListView(
                           padding: EdgeInsets.zero,
@@ -132,7 +129,6 @@ class HomeScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18)),
                             ),
-
                             CarouselSlider(
                               options: CarouselOptions(
                                 height: 160,
@@ -203,7 +199,8 @@ class HomeScreen extends StatelessWidget {
                                                           BorderRadius.circular(
                                                               20),
                                                     ),
-                                                    child: const Text("I want!",
+                                                    child: const Text(
+                                                        "I want ->",
                                                         style: TextStyle(
                                                             color:
                                                                 Colors.white)),
@@ -235,7 +232,6 @@ class HomeScreen extends StatelessWidget {
                                 );
                               }).toList(),
                             ),
-
                             const Padding(
                               padding: EdgeInsets.fromLTRB(16, 24, 16, 12),
                               child: Row(
@@ -251,7 +247,6 @@ class HomeScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-
                             Container(
                               height: 260,
                               padding: const EdgeInsets.only(left: 16),
