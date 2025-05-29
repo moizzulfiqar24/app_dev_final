@@ -1,93 +1,16 @@
-I have a flutter project that I have already connected to my firebase console using flutterfire configure and have also added firebase_core: ^3.13.1, flutter_bloc: ^9.1.1, firebase_core: ^3.13.1, cloud_firestore: ^5.6.8 to my pubsec. 
+Ok lets work on the cards screen.
+ 
+Clicking on Cards on navigation should lead to cards_screen.dart
 
-Currently inside my lib folder I have blocs, screens, utils, models, repository and widgets folder.
-
-I have already created the firestore database in my firebase console and is in test mode.
-
-Now I want design the home screen of a shopping app (as attached in the photo).
+Its a static UI screen, based on the provided design (image attached). No Firebase, Bloc, or API integration required. Focus on UI layout and clean design only using pure Flutter widgets. Ensure the
+screen is scrollable on all devices.
 
 Requirements:
-● Create a banner slider (carousel) with data from Firestore.
-● Display a horizontal category list (image + name) from Firestore.
-● Display a horizontal "Most Popular" product list (image, name, price, favorite icon) from Firestore.
-● See all button is static (No navigation required) 
+● Use dummy data (static values) — no Firebase or backend.
+● Design must include:
+   ○ Use any three bank card image in page view.
+   ○ Bottom app bar should select cards tab here.
+   ○ User proper gradient color in background.
+   ○ Show last activity transaction list.
 
-Fetch all data from Firebase Firestore only. Use only and only BLoC for any and all State Management.
-
-Once everything is done, we'll then move on to manually adding data to Firestore. Remember firestore issues in adding images so you need to cater that while giving the code.
-
-
-
-To seed your three collections manually in the Firebase Console, just do the following steps for **each** collection:
-
----
-
-## 1. Open Firestore in the Firebase Console
-
-1. Go to [https://console.firebase.google.com/](https://console.firebase.google.com/)
-2. Select your project.
-3. In the left‐hand menu click **Firestore Database**.
-4. Make sure you’re in **Data** view (the default).
-
----
-
-## 2. Create the **banners** collection
-
-1. Click **Start collection** (or **+ Add collection** if you already have others).
-2. **Collection ID**: `banners`
-3. Click **Next**.
-4. In **Document ID** leave it blank to auto-generate, or give it a name like `banner1`.
-5. Under **Fields**, add one field:
-
-   * **Field**: `imageUrl`
-   * **Type**: `string`
-   * **Value**: e.g. `https://your-cdn.com/banner1.jpg`
-6. Click **Save**.
-
----
-
-## 3. Create the **categories** collection
-
-1. Click **+ Add collection**.
-2. **Collection ID**: `categories` → **Next**
-3. **Document ID**: auto-generated or `category1`
-4. Add these fields:
-
-   * **name** → `string` → e.g. `Electronics`
-   * **imageUrl** → `string` → e.g. `https://your-cdn.com/cat-electronics.png`
-5. **Save**.
-6. Repeat *Add document* for as many categories as you need.
-
----
-
-## 4. Create the **products** collection
-
-1. Click **+ Add collection**.
-2. **Collection ID**: `products` → **Next**
-3. **Document ID**: auto-generated or `product1`
-4. Add fields:
-
-   * **name** → `string` → e.g. `4K Gaming Monitor`
-   * **imageUrl** → `string` → e.g. `https://your-cdn.com/monitor.jpg`
-   * **price** → `number` → e.g. `299.99`
-   * **isPopular** → `boolean` → check the box for **true** if you want it in the “Most Popular” list
-5. **Save**, and repeat for each product you need.
-
----
-
-Once you’ve added some documents in each collection:
-
-* Your app’s `fetchBanners()`, `fetchCategories()`, and `fetchPopularProducts()` calls will immediately start returning real data.
-* If you leave your Firestore rules in test mode, no further auth configuration is needed for reads/writes.
-
-That’s it—just three clicks per collection and a few fields per document, and your mock UI will light up with live Firestore data!
-
-
-I said to you that i need the UI exactly as in image. Only the top category list like Earn 100% etc, banners and products are from firebase, rest all like alert button filter etc are static icons and text. Rewrite the entire home_screen.dart code and make the UI exactly like in image.
-
-For navbar yes make the navbar also just like in image. From search to navbar all must be same as image. 
-
-Give me completely rewritten home_screen.dart code with the exact UI as in the image you provided: [
-
-
-]
+The three cards images are added in assets/images/card1.jpg assets/images/card2.jpg assets/images/card3.jpg

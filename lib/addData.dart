@@ -16,23 +16,23 @@ class FirestoreSeederScreen extends StatelessWidget {
     // Categories
     await firestore.collection('categories').add({
       'name': 'Earn 100%',
-      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/ticket.svg',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/3.png',
     });
     await firestore.collection('categories').add({
       'name': 'Tax Note',
-      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/note.svg',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/4.png',
     });
     await firestore.collection('categories').add({
       'name': 'Premium',
-      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/sketch-logo.svg',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/2.png',
     });
     await firestore.collection('categories').add({
       'name': 'Challenge',
-      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/game-controller.svg',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/9b608be4cd1a10484fec88c664240a7cdb5db46f/assets/images/5.png',
     });
     await firestore.collection('categories').add({
       'name': 'More',
-      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/834fa60f9805615f2d036fa0ee9a89f46a548dc3/assets/images/dots-three-outline.svg',
+      'imageUrl': 'https://raw.githubusercontent.com/moizzulfiqar24/app_dev_final/834fa60f9805615f2d036fa0ee9a89f46a548dc3/assets/images/1.png',
     });
 
     // Products
