@@ -30,7 +30,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      // Header
                       Padding(
                         padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
                         child: Row(
@@ -60,7 +59,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // Search + Filter
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 16, vertical: 8),
@@ -93,7 +91,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // Categories
                       Container(
                         height: 85,
                         child: ListView.builder(
@@ -124,7 +121,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // Main content
                       Expanded(
                         child: ListView(
                           padding: EdgeInsets.zero,
@@ -137,7 +133,6 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 18)),
                             ),
 
-                            // Banner Carousel (fixed overflow)
                             CarouselSlider(
                               options: CarouselOptions(
                                 height: 160,
@@ -152,7 +147,6 @@ class HomeScreen extends StatelessWidget {
                                     child: Stack(
                                       fit: StackFit.expand,
                                       children: [
-                                        // Banner image
                                         Image.network(
                                           banner.imageUrl,
                                           width: double.infinity,
@@ -160,7 +154,6 @@ class HomeScreen extends StatelessWidget {
                                           errorBuilder: (_, __, ___) =>
                                               Icon(Icons.image_not_supported),
                                         ),
-                                        // Gradient overlay
                                         Container(
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(
@@ -173,7 +166,6 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        // Caption moved into Positioned to avoid overflow
                                         Positioned(
                                           left: 16,
                                           right: 16,
@@ -391,7 +383,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// Top right icon with border
 class _TopIcon extends StatelessWidget {
   final IconData icon;
 
