@@ -1,5 +1,5 @@
 // import 'package:app_dev_final/addData.dart';
-import 'package:app_dev_final/screens/cards_screen.dart';
+import 'package:app_dev_final/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/home_screen.dart';
